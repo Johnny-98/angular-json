@@ -1,0 +1,41 @@
+<!-- <div *ngFor="let item of indexes | keyvalue">
+    <strong>{{ transformKey(item.key) }}:</strong>
+    
+    <div *ngIf="isObject(item.value)">
+        <div *ngFor="let subItem of item.value | keyvalue">
+          {{ transformKey(subItem.key) }}: {{ renderValue(subItem.value) }}
+        </div>
+    </div>
+</div>
+<br/> -->
+  
+<h2>indexes</h2>
+
+  <div *ngFor="let item of indexes | keyvalue">
+    <strong>{{ transformKey(item.key) }}:</strong>
+    <ng-container *ngIf="isObject(item.value); else handleScalar">
+        <div *ngFor="let subItem of item.value | keyvalue">
+          {{ transformKey(subItem.key) }}: {{ renderValue(subItem.value) }}
+        </div>
+    </ng-container>
+    <ng-template #handleScalar>
+      {{ renderValue(item.value) }}
+    </ng-template>
+  </div>
+
+  <h2>demographicSummary</h2>
+
+  <div *ngFor="let item of demographicSummary | keyvalue">
+    <strong>{{ transformKey(item.key) }}:</strong>
+    <ng-container *ngIf="isObject(item.value); else handleScalar">
+        <div *ngFor="let subItem of item.value | keyvalue">
+          {{ transformKey(subItem.key) }}: {{ renderValue(subItem.value) }}
+        </div>
+    </ng-container>
+    <ng-template #handleScalar>
+      {{ renderValue(item.value) }}
+    </ng-template>
+  </div>
+
+  
+  
