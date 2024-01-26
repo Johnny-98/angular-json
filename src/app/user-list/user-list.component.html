@@ -1,12 +1,12 @@
-<div *ngFor="let key of dataKeys">
+<div *ngFor="let key of dataKeys ">
   <h2>{{ key }}</h2>
-  
-  <div *ngFor="let item of getPropertyValue(key) | keyvalue">
+  <!-- keyvalue to order it -->
+  <div *ngFor="let item of getPropertyValue(key) | preserveOrder">
     <strong>{{ transformKey(item.key) }}:</strong>
     <ng-container *ngIf="isObject(item.value)">
       <div *ngIf="!isEmptyObject(item.value); else handleScalar">
         <div *ngFor="let subItem of item.value | keyvalue">
-          {{ transformKey(subItem.key) }}: {{ renderValue(subItem.value) }}
+          {{ renderValue(subItem.value) }}
         </div>
       </div>
     </ng-container>
