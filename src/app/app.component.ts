@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ang16';
+  constructor(private router:Router){}
+
+  //future
+  // navigateToNavbar() {
+  //   this.router.navigate(['/navbar']);
+  // }
+
+  // navigateToNavbarPage(id: number) {
+  //   this.router.navigate(['/navbar' , id]);
+  // }
 }

@@ -7,6 +7,9 @@ import { PreserveOrderPipe } from './custom-pipes/preserve-order.pipe';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { BlogComponent } from './components/blog/blog.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PropertiesComponent } from './components/properties/properties.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +18,9 @@ import { AppRoutingModule } from './app-routing.module';
     UserListComponent,
     //pipes
     PreserveOrderPipe,
+    NotFoundComponent,
+    BlogComponent,
+    PropertiesComponent
   ],
   imports: [
     BrowserModule,

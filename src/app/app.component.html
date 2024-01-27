@@ -1,10 +1,11 @@
 <router-outlet>
-    <a routerLink="/">Home</a>
-    <br/>
-    <a routerLink="/navbar">Go to YourNavbar</a>
-    <br/>
-    <a [routerLink]="['/navbar', '1']">Page 1</a>
-    <br/>
-    <a [routerLink]="['/navbar', '2']">Page 2</a>
+    <button routerLink="/">Home</button>
+    <button routerLink="/blog">Blog</button>
+    <button routerLink="/properties">Properties</button>
+
+    <!-- future -->
+    <!-- <button (click) = "navigateToNavbar()">Go to YourNavbar</button>
+    <button (click) = "navigateToNavbarPage(1)">Page 1</button> -->
+
 
 </router-outlet>

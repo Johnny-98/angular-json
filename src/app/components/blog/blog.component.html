@@ -1,0 +1,10 @@
+<p>blog works!</p>
+
+<nav>
+    <ul>
+        <button [routerLink]="['blogpage']"><a>listinfo</a></button>
+        <li routerLink = "/blog/blogpage" [queryParams] = "{projectId: 123}"><a>Query</a></li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>
