@@ -1,3 +1,10 @@
 <router-outlet>
-    <a routerLink="/list">Go to YourComponent</a>
+    <a routerLink="/">Home</a>
+    <br/>
+    <a routerLink="/navbar">Go to YourNavbar</a>
+    <br/>
+    <a [routerLink]="['/navbar', '1']">Page 1</a>
+    <br/>
+    <a [routerLink]="['/navbar', '2']">Page 2</a>
+
 </router-outlet>
