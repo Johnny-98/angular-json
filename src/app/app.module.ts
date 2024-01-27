@@ -6,6 +6,7 @@ import { PreserveOrderPipe } from './custom-pipes/preserve-order.pipe';
 import { UserListComponent } from './user-list/user-list.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     UserListComponent,
     //pipes
-    PreserveOrderPipe
+    PreserveOrderPipe,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
