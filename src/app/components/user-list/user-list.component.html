@@ -1,9 +1,56 @@
-<div *ngFor="let key of dataKeys ">
+<!-- <div *ngFor="let key of dataKeys ">
   <h2>{{ key }}</h2>
-  <!-- keyvalue to order it -->
-  <div *ngFor="let item of getPropertyValue(key) | preserveOrder">
-    <strong>{{ transformKey(item.key) }}:</strong>
-    {{ renderValue(item.value) }}
+  keyvalue to order it
+  <div *ngFor="let item of getPropertyValue(key); let i = index">
+    <div *ngFor="let subKey of item  | preserveOrder">
+      <strong>{{ transformKey(subKey.key) }}:</strong> {{ renderValue(subKey.value) }}
+    </div>
+    <strong>Object {{ i + 1 }} -</strong>
+    <strong>sq_meters:</strong> {{ item.sq_meters }}
+  </div>
+</div> -->
+
+<div *ngFor="let key of dataKeys">
+  <h2>{{ transformKey(key) }}</h2>
+  <!-- Display only the first object for each key -->
+  <div *ngIf="getPropertyValue(key) && getPropertyValue(key).length > 0">
+    <div>
+      <strong>First Object Description:</strong> {{ getPropertyValue(key)[0].description }}
+    </div>
+    <div>
+      <strong>First Object Address:</strong> {{ getPropertyValue(key)[0].address }}
+    </div>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ getPropertyValue(key)[0].broker }}</mat-card-title>
+        <mat-card-subtitle>{{ getPropertyValue(key)[0].agency }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      
+      <mat-card-content>
+        <h3>
+          {{ getPropertyValue(key)[0].number_of_rooms }},
+          {{ getPropertyValue(key)[0].address }}
+        </h3>
+
+        <mat-grid-list cols="2" rowHeight="25px">
+          <mat-grid-tile>Площ: {{ getPropertyValue(key)[0].sq_meters }}</mat-grid-tile>
+          <mat-grid-tile>Отопление: {{ getPropertyValue(key)[0].heating }}</mat-grid-tile>
+          <mat-grid-tile>Материал: {{ getPropertyValue(key)[0].btype }}</mat-grid-tile>
+          <mat-grid-tile>Цена на обявата: {{ getPropertyValue(key)[0].price }}</mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+
+
+      <mat-card-footer>
+              <mat-card-actions>
+        <button mat-button>Description</button>
+        <button mat-button>Contacnts</button>
+      </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
   </div>
 </div>
 

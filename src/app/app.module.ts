@@ -11,6 +11,11 @@ import { BlogComponent } from './components/blog/blog.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PropertiesComponent } from './components/properties/properties.component';
 
+//material stuff
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 @NgModule({
   declarations: [
     //components
@@ -25,7 +30,9 @@ import { PropertiesComponent } from './components/properties/properties.componen
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    MatCardModule, MatButtonModule,MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
