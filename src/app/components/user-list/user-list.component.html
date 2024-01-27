@@ -3,16 +3,7 @@
   <!-- keyvalue to order it -->
   <div *ngFor="let item of getPropertyValue(key) | preserveOrder">
     <strong>{{ transformKey(item.key) }}:</strong>
-    <ng-container *ngIf="isObject(item.value)">
-      <div *ngIf="!isEmptyObject(item.value); else handleScalar">
-        <div *ngFor="let subItem of item.value | keyvalue">
-          {{ renderValue(subItem.value) }}
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #handleScalar>
-      {{ renderValue(item.value) }} <!-- Use renderValue to handle scalar values and empty objects -->
-    </ng-template>
+    {{ renderValue(item.value) }}
   </div>
 </div>
 

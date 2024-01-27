@@ -7,16 +7,17 @@ import { DataService } from '../../data.service';
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-  dataStore: any = {};
+  // filter data by the given key
+  dataKeys:any[] = ["indexes"];
 
-  dataKeys:any[] = ["indexes" , "demographicSummary"]
-
+  // Inject DataService
   constructor(private dataService: DataService) {}
 
+  // Fetch data when the component initializes
   ngOnInit(): void {
     this.dataService.fetchData().subscribe(
       (data) => {
-        this.handleData(data, this.dataStore);  
+        this.dataService.setDataStore(data);
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -24,38 +25,15 @@ export class UserListComponent implements OnInit {
     )
   }
 
-  private handleData(data: any, targetObject: any): void {
-    if (data && typeof data === 'object') {
-      
-      for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          let value = data[key];
-          targetObject[key] = value;
-        }
-      }
-    }
+  getPropertyValue(propertyName: string): any {
+    return this.dataService.getPropertyValue(propertyName);
   }
 
   renderValue(value: any): string {
-    // Check for empty object specifically
-    if (this.isObject(value) && this.isEmptyObject(value)) {
-      return "novalue"; // Return "novalue" if the object is empty
-    }
-    if (this.isObject(value)) {
-      return JSON.stringify(value, null, 2); // Converts object to formatted JSON string
-    }
-    return Array.isArray(value) ? value.join(', ') : String(value);
+    return this.dataService.renderValue(value);
   }
-  transformKey(key: unknown): string {
-    return String(key).replace('_', ' ');
-  }
-  isObject(value: any): value is Record<string, unknown> {
-    return typeof value === 'object' && value !== null;
-  }
-  isEmptyObject(obj: any): boolean {
-    return Object.keys(obj).length === 0;
-  }
-  getPropertyValue(propertyName: string): any {
-    return this.dataStore[propertyName];
+
+  transformKey(key: string): string {
+    return this.dataService.transformKey(key);
   }
 }
