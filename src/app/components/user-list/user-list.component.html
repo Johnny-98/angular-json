@@ -1,8 +1,8 @@
 <br>
 <div class="carousel-wrapper">
-  <div *ngFor="let key of dataKeys">
-    <h2>{{ key }}</h2>
-    <p-carousel [value]="getPropertyValue(key)" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+  <div>
+    <h2>{{ dataKey }}</h2>
+    <p-carousel [value]="getPropertyValue(dataKey)" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
       <ng-template let-product pTemplate="item">
         <p-card class="mycard" [style]="{ width: '500px' }" header="{{ product.number_of_rooms }},{{ product.address }}">
           <ng-template pTemplate="header">

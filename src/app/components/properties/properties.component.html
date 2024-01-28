@@ -5,6 +5,18 @@
 
 <h2>Page: {{nodeId}} works!</h2>
 
+<input type="text" [(ngModel)]="searchQuery" (input)="search()" placeholder="Search by address">
 
+<div>Results:{{searchResults.length}}
+  <!-- put result count here -->
+</div>
+<!-- Display search results -->
+<div *ngFor="let item of searchResults; let i = index">
+  <h2>Object {{ i + 1 }}</h2>
+  <div *ngFor="let subKey of item | preserveOrder">
+    <strong>{{ transformKey(subKey.key) }}:</strong> {{ renderValue(subKey.value) }}
+  </div>
+  <strong>sq_meters:</strong> {{ item.sq_meters }}
+</div>
 
 <router-outlet></router-outlet>
