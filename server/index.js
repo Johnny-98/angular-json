@@ -10,21 +10,32 @@ app.use(cors());
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: '*', // Specify the client URL if you want to restrict origins
         methods: ['GET', 'POST']
     }
 });
 
 const PORT = process.env.PORT || 3000;
 
-// Endpoint to fetch data
-app.get('/data', (req, res) => {
+// Common function to fetch data
+const fetchData = (callback) => {
+    // Load and cache data on startup
     fs.readFile('data.json', 'utf8', (err, data) => {
         if (err) {
-            res.status(500).send('Error reading data');
-            return;
+            callback(err, null);
+        } else {
+            callback(null, JSON.parse(data));
         }
-        res.send(JSON.parse(data));
+    });
+};
+
+// Endpoint to fetch data
+app.get('/data', (req, res) => {
+    fetchData((err, data) => {
+        if (err) {
+            res.status(500).send('Error reading data');
+        } else {
+            res.send(data);
+        }
     });
 });
 
@@ -33,12 +44,12 @@ io.on('connection', (socket) => {
     console.log('New client connected');
 
     // Fetch and emit data
-    fs.readFile('data.json', 'utf8', (err, data) => {
+    fetchData((err, data) => {
         if (err) {
             socket.emit('error', 'Error reading data');
-            return;
+        } else {
+            socket.emit('data', data);
         }
-        socket.emit('data', JSON.parse(data));
     });
 
     socket.on('disconnect', () => {
