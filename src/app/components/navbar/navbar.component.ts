@@ -1,8 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class NavbarComponent{}
+export class NavbarComponent implements OnInit {
+    items: MenuItem[] | undefined;
+
+    constructor(private router:Router){}
+
+    ngOnInit() {
+        this.items = [
+            {label: 'Home', command:()=> this.navigateToHome()},
+            {label: 'Blog', command:()=> this.navigateToBlog()},
+            {label: 'Properties', command:()=> this.navigateToProperties()}
+        ];
+    }
+    
+    navigateToHome() {
+    this.router.navigate(['/list']);
+    }
+    navigateToBlog() {
+        this.router.navigate(['/blog']);
+    }
+    navigateToProperties() {
+        this.router.navigate(['/properties']);
+    }
+}

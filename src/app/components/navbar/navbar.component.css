@@ -1,0 +1,11 @@
+
+
+.your-menu-class > div {
+    border-radius: 0;
+    /* flex-direction: row-reverse; */
+
+    .p-menuitem-link {
+        justify-content: center;
+    }  
+}
+
