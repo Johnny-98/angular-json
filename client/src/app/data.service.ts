@@ -8,6 +8,7 @@ import io from 'socket.io-client';
 })
 export class DataService {
   private apiUrl = 'http://localhost:3000/data'; // URL to web API
+  private microserviceUrl = 'http://localhost:4000'; // URL to the microservice
   private socket = io('http://localhost:3000'); // URL to Socket.IO server
   public dataStore: any; // Public Store for your data
 
@@ -16,6 +17,11 @@ export class DataService {
   // Fetch data from the server
   fetchData(): Observable<any> {
     return this.http.get(this.apiUrl);
+  }
+
+  // Fetch property details from the microservice
+  fetchPropertyDetails(query: string): Observable<any> {
+    return this.http.get(`${this.microserviceUrl}/property-details`, { params: { query: query } });
   }
 
   // Listen for real-time data updates from the server
@@ -36,20 +42,15 @@ export class DataService {
     this.dataStore = data;
   }
 
-   // shows the value for the given data object
   getPropertyValue(propertyName: string): any {
     return this.dataStore ? this.dataStore[propertyName] : null;
   }
 
-  //Renders the value for display. Handles different data types.
   renderValue(value: any): string {
-    // Implement according to your needs. For now, just converting to string.
     return value ? value.toString() : '';
   }
 
-  // Replaces underscores with spaces
   transformKey(key: string): string {
-    // Example implementation: replace underscores with spaces and capitalize
     return key ? key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : '';
   }
 }
