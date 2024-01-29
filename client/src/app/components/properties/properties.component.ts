@@ -54,6 +54,15 @@ export class PropertiesComponent implements OnInit {
     );
   }
 
+  onInputChanged(): void {
+    if (!this.searchQuery) {
+      this.searchQuery = '';
+      this.searchResults = [...this.filteredData]; // Reset searchResults to the full data
+    } else {
+      this.search()
+    }
+  }
+
   getPropertyValue(propertyName: string): any {
     return this.dataService.getPropertyValue(propertyName);
   }
@@ -64,10 +73,5 @@ export class PropertiesComponent implements OnInit {
 
   transformKey(key: string): string {
     return key;
-  }
-
-  clearSearch(): void {
-    this.searchQuery = '';
-    this.searchResults = [...this.filteredData];
   }
 }

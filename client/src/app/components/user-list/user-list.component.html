@@ -39,15 +39,15 @@
       <div class="input-group">
         <h1>Search Properties</h1>
         <div class="p-inputgroup">
-          <input pInputText placeholder="Username" />
-          <button type="button" pButton icon="pi pi-search" styleClass="p-button-danger"></button>
+          <input pInputText id="searchQuery" [(ngModel)]="searchQuery" (keydown.enter)="onInputChanged()" placeholder="Enter address..."/>
+          <button type="button" pButton icon="pi pi-search" styleClass="p-button-danger" (click)="search()"></button>
         </div>
       </div>
-      <h2 class="results-group">
-        Results: 
+      <h2 class="results-group" *ngIf="searchResults.length > 0 && searchResults.length <20">
+        Results: {{searchResults.length}}
       </h2>
   
-      <p-dataView #dv [value]="getPropertyValue(dataKey)" [rows]="7" [paginator]="true" >
+      <p-dataView #dv [value]="searchResults" [rows]="7" [paginator]="true" >
           <ng-template let-product pTemplate="listItem" class="product-details">
             <div class="product-details">
               <div class="flex-container">

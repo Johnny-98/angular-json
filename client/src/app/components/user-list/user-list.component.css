@@ -92,6 +92,12 @@ mat-grid-tile > div {
 
 
 /* Data View */
+
+.p-dataview.p-dataview-list .p-dataview-content > .p-grid > div {
+  border: none;
+}
+
+
 .data-card {
   display: flex;
   flex-direction: column;

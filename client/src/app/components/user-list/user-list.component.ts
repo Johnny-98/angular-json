@@ -8,8 +8,11 @@ import { DataService } from '../../data.service';
   encapsulation: ViewEncapsulation.None
 })
 export class UserListComponent implements OnInit {
-  // Use a single key for filtering
   dataKey: string = "suggestions";
+  filteredData: any[] = [];
+  searchQuery: string = '';
+  searchResults: any[] = [];
+  
   responsiveOptions = [
     {
       breakpoint: '2219px',
@@ -33,8 +36,7 @@ export class UserListComponent implements OnInit {
     }
   ];
 
-  //NEW
-  products: any[] = [];
+
 
   constructor(private dataService: DataService) {}
 
@@ -42,46 +44,45 @@ export class UserListComponent implements OnInit {
     this.dataService.fetchData().subscribe(
       (data) => {
         this.dataService.setDataStore(data);
+        this.filterData();
+
       },
       (error) => {
         console.error('Error fetching data:', error);
       }
     );
 
-    this.responsiveOptions 
-
-    //NEW
-    this.products = [
-      {
-        id: '1000',
-        code: 'f230fh0g3',
-        name: 'Bamboo Watch',
-        description: 'Product Description',
-        image: 'bamboo-watch.jpg',
-        price: 65,
-        category: 'Accessories',
-        quantity: 24,
-        inventoryStatus: 'INSTOCK',
-        rating: 5
-      },
-      // Add more product objects as needed
-    ];
+    this.responsiveOptions;
   }
 
-  //NEW
-  getSeverity(product: any) {
-    switch (product.inventoryStatus) {
-      case 'INSTOCK':
-        return 'success';
+  filterData(): void {
+    const propertyValue = this.dataService.getPropertyValue(this.dataKey);
+    if (Array.isArray(propertyValue)) {
+      this.filteredData = propertyValue;
+    } else {
+      this.filteredData = [];
+    }
+    this.searchResults = [...this.filteredData];
+  }
 
-      case 'LOWSTOCK':
-        return 'warning';
+  search(): void {
+    this.dataService.fetchPropertyDetails(this.searchQuery).subscribe(
+      response => {
+        console.log('Response:', response); // This will allow you to inspect the response object
+        this.searchResults = response.details;
+      },
+      error => {
+        console.error('Error fetching property details:', error);
+      }
+    );
+  }
 
-      case 'OUTOFSTOCK':
-        return 'danger';
-
-      default:
-        return null;
+  onInputChanged(): void {
+    if (!this.searchQuery) {
+      this.searchQuery = '';
+      this.searchResults = [...this.filteredData]; // Reset searchResults to the full data
+    } else {
+      this.search()
     }
   }
 
@@ -94,6 +95,6 @@ export class UserListComponent implements OnInit {
   }
 
   transformKey(key: string): string {
-    return this.dataService.transformKey(key);
+    return key;
   }
 }

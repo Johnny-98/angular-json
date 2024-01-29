@@ -8,12 +8,12 @@
 <div>
   <h1>Properties for rent</h1>
   <div>
-    <input type="text" id="searchQuery" [(ngModel)]="searchQuery" (input)="search()" placeholder="Enter address...">
+    <input type="text" id="searchQuery" [(ngModel)]="searchQuery" (keydown.enter)="onInputChanged()" placeholder="Enter address...">
     <button (click)="search()">Search</button>
-    <button (click)="clearSearch()">Clear Search</button>
   </div>
-<br>
- <div *ngIf="searchResults.length > 0">Results: {{searchResults.length}}</div>
+  <br>
+
+  
   <br>
   <div *ngFor="let item of searchResults; let i = index">
     <div *ngFor="let entry of item | preserveOrder">
