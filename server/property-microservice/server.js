@@ -11,6 +11,7 @@ let propertyData;
 const path = require('path');
 const dataPath = path.join(__dirname, '../data.json');
 
+// Load and cache data on startup
 fs.readFile(dataPath, 'utf8', (err, data) => {
     if (err) {
         console.error("Error reading file:", err);
@@ -20,17 +21,23 @@ fs.readFile(dataPath, 'utf8', (err, data) => {
 });
 
 app.get('/property-details', (req, res) => {
-    const query = req.query.query.toLowerCase();
-    console.log("Query received:", query);
+    const query = req.query.query;
+
     if (!query) {
         res.json({ error: "Query parameter is required" });
         return;
     }
 
+    const lowercaseQuery = query.toLowerCase();
+
     try {
         const filteredData = propertyData.suggestions.filter(item =>
-            item.address.toLowerCase().includes(query)
+            item.address.toLowerCase().includes(lowercaseQuery)
         );
+
+        if (filteredData.length === 0) {
+            return;
+        }
 
         const response = {
             response_id: "response_" + new Date().getTime(),
@@ -42,8 +49,6 @@ app.get('/property-details', (req, res) => {
         console.error("Error processing request:", error);
         res.status(500).send("Internal Server Error");
     }
-
-    res.json(response);
 });
 
 app.listen(PORT, () => {

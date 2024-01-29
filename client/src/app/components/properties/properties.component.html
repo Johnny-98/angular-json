@@ -6,15 +6,15 @@
 <h2>Page: {{nodeId}} works!</h2>
 
 <div>
-  <h1>Properties Component</h1>
+  <h1>Properties for rent</h1>
   <div>
-    <label for="searchQuery">Search by Address:</label>
     <input type="text" id="searchQuery" [(ngModel)]="searchQuery" (input)="search()" placeholder="Enter address...">
     <button (click)="search()">Search</button>
     <button (click)="clearSearch()">Clear Search</button>
   </div>
-  <div>{{searchResults.length}}</div>
-
+<br>
+ <div *ngIf="searchResults.length > 0">Results: {{searchResults.length}}</div>
+  <br>
   <div *ngFor="let item of searchResults; let i = index">
     <div *ngFor="let entry of item | preserveOrder">
       <strong>{{ transformKey(entry.key) }}:</strong> {{ renderValue(entry.value) }}

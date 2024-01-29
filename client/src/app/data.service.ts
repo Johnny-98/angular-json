@@ -10,7 +10,7 @@ export class DataService {
   private apiUrl = 'http://localhost:3000/data'; // URL to web API
   private microserviceUrl = 'http://localhost:4000'; // URL to the microservice
   private socket = io('http://localhost:3000'); // URL to Socket.IO server
-  public dataStore: any; // Public Store for your data
+  public dataStore: { [key: string]: any } = {};
 
   constructor(private http: HttpClient) {}
 
