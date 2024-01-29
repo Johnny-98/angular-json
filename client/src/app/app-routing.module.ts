@@ -4,16 +4,16 @@ import { BlogComponent } from './components/blog/blog.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PropertiesComponent } from './components/properties/properties.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { PropertyListComponent } from './components/property-list/property-list.component';
 
 
 const routes: Routes = [
   //home
   {path: '', redirectTo: '/list', pathMatch: 'full' },
-  {path: "list",title: "List", component: UserListComponent},  
+  {path: "list",title: "List", component: PropertyListComponent},  
   //blog
   {path: 'blog', title : 'Blog', component: BlogComponent,  
-    children: [{path: "blogpage",title: "List2", component: UserListComponent}]},
+    children: [{path: "blogpage",title: "List2", component: PropertyListComponent}]},
   //houses to rent
   {path: 'properties', title : 'Properties', component: PropertiesComponent},
   { path: "properties/:id", component: PropertiesComponent},

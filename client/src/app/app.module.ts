@@ -12,7 +12,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PropertiesComponent } from './components/properties/properties.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { PropertyListComponent } from './components/property-list/property-list.component';
 
 //important
 import { PreserveOrderPipe } from './custom-pipes/preserve-order.pipe';
@@ -41,7 +41,7 @@ import { TagModule } from 'primeng/tag';
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
+    PropertyListComponent,
     PreserveOrderPipe,
     NotFoundComponent,
     BlogComponent,

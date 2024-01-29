@@ -2,12 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css'],
+  selector: 'app-property-list',
+  templateUrl: './property-list.component.html',
+  styleUrls: ['./property-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class UserListComponent implements OnInit {
+export class PropertyListComponent implements OnInit {
   dataKey: string = "suggestions";
   filteredData: any[] = [];
   searchQuery: string = '';
