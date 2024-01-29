@@ -10,7 +10,31 @@ import { DataService } from '../../data.service';
 export class UserListComponent implements OnInit {
   // Use a single key for filtering
   dataKey: string = "suggestions";
-  responsiveOptions: any[] | undefined;
+  responsiveOptions = [
+    {
+      breakpoint: '2219px',
+      numVisible: 3,
+      numScroll: 1
+    },
+    {
+      breakpoint: '1199px',
+      numVisible: 2,
+      numScroll: 1
+    },
+    {
+      breakpoint: '991px',
+      numVisible: 2,
+      numScroll: 1
+    },
+    {
+      breakpoint: '767px',
+      numVisible: 1,
+      numScroll: 1
+    }
+  ];
+
+  //NEW
+  products: any[] = [];
 
   constructor(private dataService: DataService) {}
 
@@ -24,28 +48,41 @@ export class UserListComponent implements OnInit {
       }
     );
 
-    this.responsiveOptions = [
+    this.responsiveOptions 
+
+    //NEW
+    this.products = [
       {
-        breakpoint: '2219px',
-        numVisible: 3,
-        numScroll: 1
+        id: '1000',
+        code: 'f230fh0g3',
+        name: 'Bamboo Watch',
+        description: 'Product Description',
+        image: 'bamboo-watch.jpg',
+        price: 65,
+        category: 'Accessories',
+        quantity: 24,
+        inventoryStatus: 'INSTOCK',
+        rating: 5
       },
-      {
-        breakpoint: '1199px',
-        numVisible: 2,
-        numScroll: 1
-      },
-      {
-        breakpoint: '991px',
-        numVisible: 2,
-        numScroll: 1
-      },
-      {
-        breakpoint: '767px',
-        numVisible: 1,
-        numScroll: 1
-      }
+      // Add more product objects as needed
     ];
+  }
+
+  //NEW
+  getSeverity(product: any) {
+    switch (product.inventoryStatus) {
+      case 'INSTOCK':
+        return 'success';
+
+      case 'LOWSTOCK':
+        return 'warning';
+
+      case 'OUTOFSTOCK':
+        return 'danger';
+
+      default:
+        return null;
+    }
   }
 
   getPropertyValue(propertyName: string): any {

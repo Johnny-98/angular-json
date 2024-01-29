@@ -3,9 +3,22 @@
 .your-menu-class > div {
     border-radius: 0;
     /* flex-direction: row-reverse; */
+    padding: 15px;
+    background: #343e4d;
+    border: none;
 
     .p-menuitem-link {
         justify-content: center;
     }  
 }
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+    color: #495057;
+    background: #9c9e9f;
+}
+
 

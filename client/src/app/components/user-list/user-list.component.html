@@ -1,13 +1,13 @@
-<br>
-<div class="carousel-wrapper">
-  <div>
-    <h2>{{ dataKey }}</h2>
-    <p-carousel [value]="getPropertyValue(dataKey)" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+<div class="carousel-wrapper ">
+
+    <h1 class="caroulsel-header">Reccomended: </h1>
+    <p-carousel [value]="getPropertyValue(dataKey).slice(0, 5)" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions">
       <ng-template let-product pTemplate="item">
         <p-card class="mycard" [style]="{ width: '500px' }" header="{{ product.number_of_rooms }},{{ product.address }}">
           <ng-template pTemplate="header">
             <div class="card-head">
-              <div mat-card-avatar class="pi pi-user"></div>
+              <i class="pi pi-user"></i>
               <div>
                 <div class="card-title">{{ product.broker }}</div>
                 <div class="card-subtitle">{{ product.agency }}</div>
@@ -30,52 +30,86 @@
         </p-card>
       </ng-template>
     </p-carousel>
-  </div>
-</div>
+
+    
 
 
-<!-- <div *ngFor="let key of dataKeys ">
-  <h2>{{ key }}</h2>
 
-  <div *ngFor="let item of getPropertyValue(key); let i = index">
-    <div *ngFor="let subKey of item  | preserveOrder">
-      <strong>{{ transformKey(subKey.key) }}:</strong> {{ renderValue(subKey.value) }}
+    <div class="data-card">
+      <div class="input-group">
+        <h1>Search Properties</h1>
+        <div class="p-inputgroup">
+          <input pInputText placeholder="Username" />
+          <button type="button" pButton icon="pi pi-search" styleClass="p-button-danger"></button>
+        </div>
+      </div>
+      <h2 class="results-group">
+        Results: 
+      </h2>
+  
+      <p-dataView #dv [value]="getPropertyValue(dataKey)" [rows]="7" [paginator]="true" >
+          <ng-template let-product pTemplate="listItem" class="product-details">
+            <div class="product-details">
+              <div class="flex-container">
+                <img mat-card-image class="product-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Property Photo" />
+                <div class="product-info">
+                    <div class="product-name">{{ product.address }}</div>
+                    <div class="product-category">
+                      <div class="row">
+                        <div class="column">
+                          <div>{{ product.number_of_rooms }}</div>
+                          <div>Отопление: {{ product.heating }}</div>
+                        </div>
+                        <div class="column">
+                          <div>Площ: {{ product.sq_meters }} sq/m</div>
+                          <div>Материал: {{ product.btype }}</div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="price-container">
+                  <span class="product-price">{{ product.price }} лв</span>
+                  <button pButton icon="pi pi-shopping-cart" class="product-cart-button" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button>
+              </div>
+            </div>
+          </ng-template>
+      </p-dataView>
     </div>
-    <strong>Object {{ i + 1 }} -</strong>
-    <strong>sq_meters:</strong> {{ item.sq_meters }}
-  </div>
-</div> -->
 
+</div>
+<!-- </div>
 
-<!-- <div *ngFor="let key of dataKeys">
-  <h2>{{ transformKey(key) }}</h2>
-  <div *ngIf="getPropertyValue(key) && getPropertyValue(key).length > 0">
-    <p-card class="mycard" [style]="{ width: '500px' }" header="{{ getPropertyValue(key)[0].number_of_rooms }},{{ getPropertyValue(key)[0].address }}">
+<div *ngFor="let item of getPropertyValue(dataKey).slice(0, 1)">
+  <h2>{{ transformKey(dataKey) }}</h2>
+  <div *ngIf="item">
+    <p-card class="mycard" [style]="{ width: '500px' }" [header]="item.number_of_rooms + ',' + item.address">
       <ng-template pTemplate="header">
         <div class="card-head">
           <div mat-card-avatar class="pi pi-user"></div>
           <div>
-              <div class="card-title">{{ getPropertyValue(key)[0].broker }}</div>
-              <div class="card-subtitle">{{ getPropertyValue(key)[0].agency }}</div>
+            <div class="card-title">{{ item.broker }}</div>
+            <div class="card-subtitle">{{ item.agency }}</div>
           </div>
         </div>
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
       </ng-template>
       <div>
         <mat-grid-list cols="2" rowHeight="25px">
-          <mat-grid-tile>Площ: {{ getPropertyValue(key)[0].sq_meters }}</mat-grid-tile>
-          <mat-grid-tile>Отопление: {{ getPropertyValue(key)[0].heating }}</mat-grid-tile>
-          <mat-grid-tile>Материал: {{ getPropertyValue(key)[0].btype }}</mat-grid-tile>
-          <mat-grid-tile>Цена на обявата: {{ getPropertyValue(key)[0].price }}</mat-grid-tile>
+          <mat-grid-tile>Площ: {{ item.sq_meters }}</mat-grid-tile>
+          <mat-grid-tile>Отопление: {{ item.heating }}</mat-grid-tile>
+          <mat-grid-tile>Материал: {{ item.btype }}</mat-grid-tile>
+          <mat-grid-tile>Цена на обявата: {{ item.price }}</mat-grid-tile>
         </mat-grid-list>
       </div>
       <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+        <p-button label="Save" icon="pi pi-check"></p-button>
+        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
       </ng-template>
-  </p-card>
+    </p-card>
   </div>
-</div> -->
+</div>
+<br> -->
 
 
 

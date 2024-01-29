@@ -27,7 +27,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DataViewModule } from 'primeng/dataview';
+import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
+import { PaginatorModule } from 'primeng/paginator';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { TagModule } from 'primeng/tag';
 
 
@@ -58,6 +63,11 @@ import { TagModule } from 'primeng/tag';
     CardModule,
     CarouselModule,
     TagModule,
+    DataViewModule,
+    PaginatorModule,
+    InputTextModule,
+    CheckboxModule,
+    RadioButtonModule,
 
 
     FormsModule,
