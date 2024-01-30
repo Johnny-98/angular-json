@@ -25,9 +25,7 @@ export class DataService {
   }
 
   // Method to fetch a product by its ID
-  // used this instead to test the data upon refresh
   getProductById(productId: string): Observable<any> {
-    // Assuming the backend has an endpoint like `/product-details/{id}`
     return this.http.get(`${this.microserviceUrl}/product-details/${productId}`);
   }
 

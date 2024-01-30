@@ -82,7 +82,6 @@ export class PropertyListComponent implements OnInit {
     if (Array.isArray(propertyValue)) {
       this.filteredData = propertyValue.map(item => ({
         ...item,
-        // images_path: this.getNextImage() // Set the next image path from the images array
       }));
     } else {
       this.filteredData = [];
@@ -93,7 +92,6 @@ export class PropertyListComponent implements OnInit {
   search(): void {
     this.dataService.fetchPropertyDetails(this.searchQuery).subscribe(
       response => {
-        console.log('Response:', response); // This will allow you to inspect the response object
         this.searchResults = response.details;
       },
       error => {

@@ -36,7 +36,7 @@ app.get('/property-details', (req, res) => {
         );
 
         if (filteredData.length === 0) {
-            res.json({ details: [] }); // Return an empty array when no results are found
+            res.json({ details: [] });
         }
 
         const response = {

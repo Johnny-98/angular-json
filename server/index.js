@@ -28,7 +28,6 @@ const fetchData = (callback) => {
     });
 };
 
-// Endpoint to fetch data
 app.get('/data', (req, res) => {
     fetchData((err, data) => {
         if (err) {

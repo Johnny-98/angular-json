@@ -8,13 +8,4 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(private router:Router){}
-
-  //future
-  // navigateToNavbar() {
-  //   this.router.navigate(['/navbar']);
-  // }
-
-  // navigateToNavbarPage(id: number) {
-  //   this.router.navigate(['/navbar' , id]);
-  // }
 }
