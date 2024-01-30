@@ -1,8 +1,7 @@
 
 <div class="carousel-wrapper ">
-
     <h1 class="caroulsel-header">Reccomended: </h1>
-    <p-carousel [value]="getPropertyValue(dataKey).slice(0, 6)" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions">
+    <p-carousel [value]="carouselData.slice(0, 6)" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions">
       <ng-template let-product pTemplate="item">
         <p-card class="mycard" [style]="{ width: '300px' }" header="{{ product.number_of_rooms }},{{ product.address }}">
           <ng-template pTemplate="header">
@@ -13,7 +12,8 @@
                 <div class="card-subtitle">{{ product.agency }}</div>
               </div>
             </div>
-            <img mat-card-image src="https://www.travaux.com/images/cms/original/ebcd4d3c-6a00-47d2-8165-6d9e192082af.jpeg" alt="Property Photo" style="max-width: 298px;">
+            <img mat-card-image [src]="product.images_path" alt="Property Photo" style="min-height: 220px;">
+            <!-- <p-image [src]="product.images_path" alt="Image" width="500" style="min-width: 500px;"></p-image> -->
           </ng-template>
           <div>
             <mat-grid-list cols="2" rowHeight="20px">
@@ -29,11 +29,6 @@
         </p-card>
       </ng-template>
     </p-carousel>
-
-    
-
-
-
     <div class="data-card">
       <div class="input-group">
         <h1>Search Properties</h1>
@@ -45,7 +40,6 @@
       <h2 class="results-group" *ngIf="searchResults.length > 0 && searchResults.length <20">
         Results: {{searchResults.length}}
       </h2>
-  
       <p-dataView #dv [value]="searchResults" [rows]="7" [paginator]="true" >
           <ng-template let-product pTemplate="listItem" class="product-details">
             <div class="product-details">
@@ -75,40 +69,7 @@
           </ng-template>
       </p-dataView>
     </div>
-
 </div>
-<!-- </div>
-
-<div *ngFor="let item of getPropertyValue(dataKey).slice(0, 1)">
-  <h2>{{ transformKey(dataKey) }}</h2>
-  <div *ngIf="item">
-    <p-card class="mycard" [style]="{ width: '500px' }" [header]="item.number_of_rooms + ',' + item.address">
-      <ng-template pTemplate="header">
-        <div class="card-head">
-          <div mat-card-avatar class="pi pi-user"></div>
-          <div>
-            <div class="card-title">{{ item.broker }}</div>
-            <div class="card-subtitle">{{ item.agency }}</div>
-          </div>
-        </div>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      </ng-template>
-      <div>
-        <mat-grid-list cols="2" rowHeight="25px">
-          <mat-grid-tile>Площ: {{ item.sq_meters }}</mat-grid-tile>
-          <mat-grid-tile>Отопление: {{ item.heating }}</mat-grid-tile>
-          <mat-grid-tile>Материал: {{ item.btype }}</mat-grid-tile>
-          <mat-grid-tile>Цена на обявата: {{ item.price }}</mat-grid-tile>
-        </mat-grid-list>
-      </div>
-      <ng-template pTemplate="footer">
-        <p-button label="Save" icon="pi pi-check"></p-button>
-        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-      </ng-template>
-    </p-card>
-  </div>
-</div>
-<br> -->
 
 
 

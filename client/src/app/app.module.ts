@@ -29,6 +29,7 @@ import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DataViewModule } from 'primeng/dataview';
+import { ImageModule } from 'primeng/image';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { PaginatorModule } from 'primeng/paginator';
@@ -70,6 +71,7 @@ import { ProperyDetailsComponent } from './components/propery-details/propery-de
     InputTextModule,
     CheckboxModule,
     RadioButtonModule,
+    ImageModule,
 
 
     FormsModule,

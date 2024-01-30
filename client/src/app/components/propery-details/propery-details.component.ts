@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-propery-details',
   templateUrl: './propery-details.component.html',
-  styleUrls: ['./propery-details.component.css']
+  styleUrls: ['./propery-details.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProperyDetailsComponent implements OnInit {
   product: any;

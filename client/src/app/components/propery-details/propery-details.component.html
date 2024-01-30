@@ -1,10 +1,47 @@
-<div *ngIf="product">
-    <h2>Product Details</h2>
-    <p>{{ product | json }}</p>
+<div class="grid-container" *ngIf="product">
+  <div class="property-map">
+    <p-image src="https://appassets.mvtdev.com/map/25/s/3501/36480222.webp" alt="Image" width="400"></p-image>
   </div>
-  
-  <div *ngIf="!product">
-    <p>Product not found.</p>
-  </div>
+  <button class="property-button-1">
+    {{ product.price}} лв  <i class="pi pi-shopping-cart"></i> 
+  </button>
+  <button class="property-button-2" routerLink="/">
+    Back
+  </button>
+  <div class="property-info">
+    <h2>{{ product.address}}</h2>
+    <div class="property-info-link">
+      <a  href='{{ product.agency_link}}'>{{ product.agency}}</a>
+    </div>
+    <div class="property-img-group">
+      <div>
+        <p-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt4Y8riQLIgBNRiIJmtLBh4agYWR-MQGArWQ&usqp=CAU" alt="Image" width="500"></p-image>
+        <div class="property-card-row">
+          <div class="column">
+            <div>Стаи: {{ product.number_of_rooms }}</div>
+            <div>Отопление: {{ product.heating }}</div>
+          </div>
+          <div class="column">
+            <div>Площ: {{ product.sq_meters }} sq/m</div>
+            <div>Материал: {{ product.btype }}</div>
+          </div>
+        </div>
+      </div>
+      <div style="gap:2rem;">
 
-  <button routerLink="/">Back to Products</button>
+        <div class="card-head">
+          <i class="pi pi-user"></i>
+          <div>
+            <div class="card-title">Брокер: {{ product.broker }}</div>
+            <div class="card-subtitle">Телефон: {{ product.contact_phone}}</div>
+          </div>
+        </div>
+        <div class="property-description">
+          {{product.description}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

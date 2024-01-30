@@ -9,9 +9,14 @@ import { DataService } from '../../data.service';
 })
 export class PropertyListComponent implements OnInit {
   dataKey: string = "suggestions";
+  carouselData: any = [];
+
+  //for the search
   filteredData: any[] = [];
   searchQuery: string = '';
   searchResults: any[] = [];
+
+  //used to assign each onject an img
   images: string[] = [
     "https://loveincorporated.blob.core.windows.net/contentimages/main/2ba923f2-25b7-403b-b3c3-95ac2016c7bb-shire-hobbit-home.jpg",
     "https://plan-a.ca/wp-content/uploads/2022/12/4800_paul_pouliot_30207_web-scaled.jpg",
@@ -26,6 +31,7 @@ export class PropertyListComponent implements OnInit {
   ];
   currentIndex: number = 0;
   
+  //used for the caroulsel
   responsiveOptions = [
     {
       breakpoint: '2219px',
@@ -57,7 +63,8 @@ export class PropertyListComponent implements OnInit {
     this.dataService.fetchData().subscribe(
       (data) => {
         this.dataService.setDataStore(data);
-        this.filterData();
+        this.getPropertyValue(this.dataKey);
+        this.filterData(this.carouselData);
 
       },
       (error) => {
@@ -66,25 +73,21 @@ export class PropertyListComponent implements OnInit {
     );
 
     this.responsiveOptions;
+    
   }
 
-  filterData(): void {
-    const propertyValue = this.dataService.getPropertyValue(this.dataKey);
+  //search functionality
+  filterData(data: any): void {
+    const propertyValue = data;
     if (Array.isArray(propertyValue)) {
       this.filteredData = propertyValue.map(item => ({
         ...item,
-        images_path: this.getNextImage() // Set the next image path from the images array
+        // images_path: this.getNextImage() // Set the next image path from the images array
       }));
     } else {
       this.filteredData = [];
     }
     this.searchResults = [...this.filteredData];
-  }
-
-  getNextImage(): string {
-    const nextImage = this.images[this.currentIndex];
-    this.currentIndex = (this.currentIndex + 1) % this.images.length; // Move to the next image in a loop
-    return nextImage;
   }
 
   search(): void {
@@ -108,8 +111,18 @@ export class PropertyListComponent implements OnInit {
     }
   }
 
+
+  //filter stuff
   getPropertyValue(propertyName: string): any {
-    return this.dataService.getPropertyValue(propertyName);
+    const propertyValue = this.dataService.getPropertyValue(propertyName);
+    if (Array.isArray(propertyValue)) {
+      this.carouselData = propertyValue.map((item, index) => ({
+        ...item,
+        images_path: this.images[index % this.images.length] // Assign images in a loop
+      }));
+    }
+
+    return this.carouselData;
   }
 
   renderValue(value: any): string {

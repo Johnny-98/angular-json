@@ -24,12 +24,6 @@ export class DataService {
     return this.http.get(`${this.microserviceUrl}/property-details`, { params: { query: query } });
   }
 
-  // Get a product by ID from the cached data
-  // getProductById(productId: string): any {
-  //   const suggestions = this.dataStore['suggestions'];
-  //   return suggestions ? suggestions.find((product:any) => product.unique_id === productId) : null;
-  // }
-
   // Method to fetch a product by its ID
   // used this instead to test the data upon refresh
   getProductById(productId: string): Observable<any> {
