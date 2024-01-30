@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
         this.items = [
             {label: 'Home', command:()=> this.navigateToHome()},
             {label: 'Blog', command:()=> this.navigateToBlog()},
+            {label: 'Contact Us'},
             {label: 'Sign Up'}
         ];
     }
