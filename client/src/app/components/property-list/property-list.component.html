@@ -2,9 +2,9 @@
 <div class="carousel-wrapper ">
 
     <h1 class="caroulsel-header">Reccomended: </h1>
-    <p-carousel [value]="getPropertyValue(dataKey).slice(0, 5)" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions">
+    <p-carousel [value]="getPropertyValue(dataKey).slice(0, 6)" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions">
       <ng-template let-product pTemplate="item">
-        <p-card class="mycard" [style]="{ width: '500px' }" header="{{ product.number_of_rooms }},{{ product.address }}">
+        <p-card class="mycard" [style]="{ width: '300px' }" header="{{ product.number_of_rooms }},{{ product.address }}">
           <ng-template pTemplate="header">
             <div class="card-head">
               <i class="pi pi-user"></i>
@@ -13,19 +13,18 @@
                 <div class="card-subtitle">{{ product.agency }}</div>
               </div>
             </div>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Property Photo">
+            <img mat-card-image src="https://www.travaux.com/images/cms/original/ebcd4d3c-6a00-47d2-8165-6d9e192082af.jpeg" alt="Property Photo" style="max-width: 298px;">
           </ng-template>
           <div>
-            <mat-grid-list cols="2" rowHeight="25px">
+            <mat-grid-list cols="2" rowHeight="20px">
               <mat-grid-tile>Площ: {{ product.sq_meters }}</mat-grid-tile>
               <mat-grid-tile>Отопление: {{ product.heating }}</mat-grid-tile>
               <mat-grid-tile>Материал: {{ product.btype }}</mat-grid-tile>
-              <mat-grid-tile>Цена на обявата: {{ product.price }}</mat-grid-tile>
+              <mat-grid-tile>Цена: {{ product.price }}</mat-grid-tile>
             </mat-grid-list>
           </div>
           <ng-template pTemplate="footer">
-            <p-button label="Save" icon="pi pi-check"></p-button>
-            <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
+            <button pButton label="View Offer" class="product-cart-button" [routerLink]="['/product-list', product.unique_id]"></button>
           </ng-template>
         </p-card>
       </ng-template>
@@ -51,11 +50,11 @@
           <ng-template let-product pTemplate="listItem" class="product-details">
             <div class="product-details">
               <div class="flex-container">
-                <img mat-card-image class="product-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Property Photo" />
+                <img mat-card-image class="product-image" src="{{ product.images_path }}" alt="Property Photo" />
                 <div class="product-info">
                     <div class="product-name">{{ product.address }}</div>
                     <div class="product-category">
-                      <div class="row">
+                      <div class="card-row">
                         <div class="column">
                           <div>{{ product.number_of_rooms }}</div>
                           <div>Отопление: {{ product.heating }}</div>
@@ -70,7 +69,7 @@
               </div>
               <div class="price-container">
                   <span class="product-price">{{ product.price }} лв</span>
-                  <button pButton icon="pi pi-shopping-cart" class="product-cart-button" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"></button>
+                  <button pButton icon="pi pi-shopping-cart" class="product-cart-button" [routerLink]="['/product-list', product.unique_id]"></button>
               </div>
             </div>
           </ng-template>

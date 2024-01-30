@@ -17,17 +17,15 @@ export class NavbarComponent implements OnInit {
         this.items = [
             {label: 'Home', command:()=> this.navigateToHome()},
             {label: 'Blog', command:()=> this.navigateToBlog()},
-            {label: 'Properties', command:()=> this.navigateToProperties()}
+            {label: 'Sign Up'}
         ];
     }
     
     navigateToHome() {
-    this.router.navigate(['/list']);
+    this.router.navigate(['/product-list']);
     }
     navigateToBlog() {
         this.router.navigate(['/blog']);
     }
-    navigateToProperties() {
-        this.router.navigate(['/properties']);
-    }
+    //login
 }

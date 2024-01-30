@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 
-/* @import "primeng/resources/themes/bootstrap4-dark-blue/theme.css"; */
 @import "primeng/resources/themes/lara-light-indigo/theme.css";
+/* @import 'primeng/resources/themes/vela-green/theme.css'; */
+
+
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
@@ -15,4 +17,26 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: #eff3f8;
+}
+
+
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background-color: #81C784;
+}
+
+.p-button {
+    color: #212529;
+    background: #81C784;
+    border: 1px solid #81C784;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+}
+
+.p-button:enabled:hover {
+    background: #6abd6e;
+    color: #212529;
+    border-color: #6abd6e;
 }

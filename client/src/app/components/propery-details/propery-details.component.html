@@ -1,0 +1,10 @@
+<div *ngIf="product">
+    <h2>Product Details</h2>
+    <p>{{ product | json }}</p>
+  </div>
+  
+  <div *ngIf="!product">
+    <p>Product not found.</p>
+  </div>
+
+  <button routerLink="/">Back to Products</button>

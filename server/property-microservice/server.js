@@ -51,6 +51,18 @@ app.get('/property-details', (req, res) => {
     }
 });
 
+app.get('/product-details/:id', (req, res) => {
+    const productId = req.params.id;
+
+    const product = propertyData.suggestions.find(item => item.unique_id === productId);
+
+    if (product) {
+        res.json(product);
+    } else {
+        res.status(404).send('Product not found');
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Microservice running on http://localhost:${PORT}`);
 });

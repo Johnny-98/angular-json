@@ -34,6 +34,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { PaginatorModule } from 'primeng/paginator';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TagModule } from 'primeng/tag';
+import { ProperyDetailsComponent } from './components/propery-details/propery-details.component';
 
 
 
@@ -46,7 +47,8 @@ import { TagModule } from 'primeng/tag';
     NotFoundComponent,
     BlogComponent,
     PropertiesComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProperyDetailsComponent
   ],
   imports: [
     BrowserModule,
