@@ -123,13 +123,13 @@ body {
 
   .property-description {
     padding-top: 10px;
-    font-size: 14px;
+    font-size: 16px;
     max-height:380px;
     overflow-y:scroll;
 }
 
 
-.card-row {
+.property-card-row {
     padding-top:30px;
     display: flex;
     flex-wrap: wrap;

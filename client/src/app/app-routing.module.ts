@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './components/blog/blog.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PropertiesComponent } from './components/properties/properties.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { ProperyDetailsComponent } from './components/propery-details/propery-details.component';
 

@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { PropertiesComponent } from './components/properties/properties.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 
 //important
@@ -47,7 +46,6 @@ import { ProperyDetailsComponent } from './components/propery-details/propery-de
     PreserveOrderPipe,
     NotFoundComponent,
     BlogComponent,
-    PropertiesComponent,
     NavbarComponent,
     ProperyDetailsComponent
   ],
